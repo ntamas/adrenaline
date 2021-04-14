@@ -23,6 +23,9 @@ isort = "^5.8.0"
 mypy = "^0.812"
 typing-extensions = {version = "^3.7", python = "<3.8"}
 
+[tool.poetry.scripts]
+insomnia = "insomnia.__main__:main"
+
 [tool.isort]
 multi_line_output = 3
 include_trailing_comma = true
