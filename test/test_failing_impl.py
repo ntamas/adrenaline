@@ -1,15 +1,15 @@
 from pytest import raises
 
-from insomnia import get_implementation
+from adrenaline import get_implementation
 
 
 def test_failing_implementation_fails_as_expected():
-    insomnia = get_implementation("failing")
+    adrenaline = get_implementation("failing")
     with raises(NotImplementedError):
-        with insomnia.enter():
+        with adrenaline.prevent_sleep():
             pass
 
 
 def test_failing_implementation_returns_false_when_verified():
-    insomnia = get_implementation("failing")
-    assert not insomnia.verify()
+    adrenaline = get_implementation("failing")
+    assert not adrenaline.is_sleep_prevented()

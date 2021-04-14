@@ -1,12 +1,12 @@
-from insomnia import get_implementation
+from adrenaline import get_implementation
 
 
 def test_dummy_implementation_works():
-    insomnia = get_implementation("dummy")
+    adrenaline = get_implementation("dummy")
 
-    assert not insomnia.verify()
+    assert not adrenaline.is_sleep_prevented()
 
-    with insomnia.enter():
-        assert insomnia.verify()
+    with adrenaline.prevent_sleep():
+        assert adrenaline.is_sleep_prevented()
 
-    assert not insomnia.verify()
+    assert not adrenaline.is_sleep_prevented()

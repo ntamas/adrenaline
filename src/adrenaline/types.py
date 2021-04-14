@@ -6,17 +6,17 @@ except ImportError:
     from typing_extensions import Protocol
 
 
-__all__ = ("Insomnia", "InsomniaContext")
+__all__ = ("Adrenaline", "AdrenalineContext")
 
 
 #: Type specification for a context that suppresses sleep when entered and restores
 #: the previous state when exited
-InsomniaContext = ContextManager[None]
+AdrenalineContext = ContextManager[None]
 
 
-class Insomnia(Protocol):
-    def enter(self, *, display: bool, reason: str) -> InsomniaContext:
+class Adrenaline(Protocol):
+    def is_sleep_prevented(self) -> bool:
         pass
 
-    def verify(self) -> bool:
+    def prevent_sleep(self, *, display: bool, reason: str) -> AdrenalineContext:
         pass

@@ -105,5 +105,5 @@ def _verify() -> bool:
     output = check_output(["pmset", "-g", "assertions"])
     lines = output.strip().split(b"\n")
     return any(
-        b'SleepAssertion named: "Python insomnia module"' in line for line in lines
+        b'SleepAssertion named: "Python adrenaline module"' in line for line in lines
     )

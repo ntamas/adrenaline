@@ -2,15 +2,15 @@ import platform
 from contextlib import contextmanager
 from typing import Dict, Iterator, Optional
 
-from .types import Insomnia, InsomniaContext
+from .types import Adrenaline, AdrenalineContext
 
 __all__ = ("get_implementation",)
 
 
-_implementations = {}  # type: Dict[str, Insomnia]
+_implementations = {}  # type: Dict[str, Adrenaline]
 
 
-def get_implementation(name: Optional[str] = None) -> Insomnia:
+def get_implementation(name: Optional[str] = None) -> Adrenaline:
     if name is None:
         name = platform.system()
 
@@ -22,7 +22,7 @@ def get_implementation(name: Optional[str] = None) -> Insomnia:
     return impl
 
 
-def import_implementation(name: str) -> Insomnia:
+def import_implementation(name: str) -> Adrenaline:
     if name == "darwin":
         from ._impl.darwin import _enter, _exit, _verify
     elif name == "windows":
@@ -34,18 +34,18 @@ def import_implementation(name: str) -> Insomnia:
     else:
         raise NotImplementedError(f"No such implementation: {name!r}")
 
-    class _InsomniaImpl(Insomnia):
+    class _AdrenalineImpl(Adrenaline):
         @contextmanager
-        def enter(
+        def prevent_sleep(
             self, *, display: bool = False, reason: Optional[str] = None
         ) -> Iterator[None]:
             try:
-                _enter(display=display, reason=reason or "Python insomnia module")
+                _enter(display=display, reason=reason or "Python adrenaline module")
                 yield
             finally:
                 _exit()
 
-        def verify(self) -> bool:
+        def is_sleep_prevented(self) -> bool:
             return _verify()
 
-    return _InsomniaImpl()
+    return _AdrenalineImpl()

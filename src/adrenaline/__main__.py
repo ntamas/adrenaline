@@ -7,7 +7,7 @@ import platform
 import sys
 from argparse import ArgumentParser
 
-from insomnia import insomnia
+from adrenaline import adrenaline
 
 
 def decorate(text: str):
@@ -33,7 +33,7 @@ def main():
     decoration = ""
     indentation = ""
 
-    with insomnia(display=options.display):
+    with adrenaline(display=options.display):
         message = "Sleep mode inhibited."
         if options.display:
             message += " The display is also forced to stay on."
