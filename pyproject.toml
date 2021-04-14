@@ -4,6 +4,9 @@ version = "0.2.0"
 description = "Keep your OS from sleeping (supports Windows and macOS)"
 authors = ["Tamas Nepusz <ntamas@gmail.com>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/ntamas/adrenaline"
+repository = "https://github.com/ntamas/adrenaline"
 packages = [
     { include = "adrenaline", from = "src" }
 ]
