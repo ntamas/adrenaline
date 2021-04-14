@@ -5,8 +5,8 @@ script is running.
 
 import platform
 import sys
-
 from argparse import ArgumentParser
+
 from insomnia import insomnia
 
 
