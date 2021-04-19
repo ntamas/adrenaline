@@ -27,6 +27,8 @@ def import_implementation(name: str) -> Adrenaline:
         from ._impl.darwin import _enter, _exit, _verify
     elif name == "windows":
         from ._impl.windows import _enter, _exit, _verify
+    elif name == "linux":
+        from ._impl.linux import _enter, _exit, _verify
     elif name == "dummy":
         from ._impl.dummy import _enter, _exit, _verify
     elif name == "failing":
@@ -37,10 +39,18 @@ def import_implementation(name: str) -> Adrenaline:
     class _AdrenalineImpl(Adrenaline):
         @contextmanager
         def prevent_sleep(
-            self, *, display: bool = False, reason: Optional[str] = None
+            self,
+            *,
+            display: bool = False,
+            app_name: Optional[str] = None,
+            reason: Optional[str] = None,
         ) -> Iterator[None]:
+            _enter(
+                display=display,
+                app_name=app_name or "Python",
+                reason=reason or "Python adrenaline module",
+            )
             try:
-                _enter(display=display, reason=reason or "Python adrenaline module")
                 yield
             finally:
                 _exit()

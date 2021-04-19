@@ -1,9 +1,10 @@
 import platform
 from contextlib import contextmanager
 
+from .errors import NotSupportedError
 from .impl_registry import get_implementation
 
-__all__ = ("adrenaline", "is_sleep_prevented", "prevent_sleep")
+__all__ = ("adrenaline", "is_sleep_prevented", "prevent_sleep", "NotSupportedError")
 
 _impl = get_implementation()
 

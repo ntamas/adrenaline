@@ -82,7 +82,7 @@ kIOPMAssertionLevelOn = 255
 current_assertion_id = c_uint32(0)
 
 
-def _enter(*, display: bool, reason: str) -> None:
+def _enter(*, display: bool, app_name: str, reason: str) -> None:
     global current_assertion_id
     assertion_type = get_assertion_type(display)
     if current_assertion_id.value == 0:

@@ -12,7 +12,7 @@ ES_DISPLAY_REQUIRED = 0x00000002
 _previous_state = None
 
 
-def _enter(*, display: bool, reason: str) -> None:
+def _enter(*, display: bool, app_name: str, reason: str) -> None:
     global _previous_state
 
     flags = ES_CONTINUOUS | ES_SYSTEM_REQUIRED
