@@ -13,11 +13,11 @@ PowerManagementCookie = int
 
 
 class FreedesktopPowerManagement(MessageGenerator):
-    interface = "org.freedesktop.FreedesktopPowerManagement"
+    interface = "org.freedesktop.PowerManagement"
 
     def __init__(
         self,
-        object_path: str = "/org/freedesktop/FreedesktopPowerManagement",
+        object_path: str = "/org/freedesktop/PowerManagement",
         bus_name: str = "org.freedesktop.PowerManagement",
     ):
         super().__init__(object_path, bus_name)
@@ -64,6 +64,7 @@ class GNOMESessionManager(MessageGenerator):
         )
 
 
+_connection = None
 _disposers = []  # type: Callable[[Any], None]
 _interfaces = []
 
@@ -71,13 +72,18 @@ _interface_candidates = [GNOMESessionManager, FreedesktopPowerManagement]
 
 
 def _enter(*, display: bool, app_name: str, reason: str) -> None:
-    global _disposer, _interface_candidates
+    global _connection, _disposers, _interfaces, _interface_candidates
 
-    with closing(open_dbus_connection(bus="SYSTEM")) as bus:
+    if _connection is None:
+        _connection = open_dbus_connection()
+
+    success = False
+    try:
         for cls in _interface_candidates:
             interface = cls()
             try:
-                cookie = Proxy(interface, bus).inhibit(app_name, reason)
+                (cookie,) = Proxy(interface, _connection).inhibit(app_name, reason)
+                success = True
                 break
             except DBusErrorResponse:
                 pass
@@ -85,6 +91,11 @@ def _enter(*, display: bool, app_name: str, reason: str) -> None:
             raise NotSupportedError(
                 "No supported power management DBus interface is available"
             )
+    finally:
+        if not success and not _disposers and _connection is not None:
+            # connection is not needed any more
+            _connection.close()
+            _connection = None
 
     def disposer(bus: Any) -> None:
         Proxy(interface, bus).uninhibit(cookie)
@@ -94,10 +105,18 @@ def _enter(*, display: bool, app_name: str, reason: str) -> None:
 
 
 def _exit() -> None:
-    global _disposers
+    global _connection, _disposers
 
+    assert _connection
+
+    _interfaces.pop()
     disposer = _disposers.pop()
-    disposer()
+    disposer(_connection)
+
+    if not _disposers:
+        # connection is not needed any more
+        _connection.close()
+        _connection = None
 
 
 def _verify() -> bool:
@@ -108,10 +127,12 @@ def _verify() -> bool:
 
     interface = _interfaces[-1]
     if hasattr(interface, "is_inhibited"):
-        try:
-            return Proxy(interface, bus).is_inhibited()
-        except DBusErrorResponse:
-            pass
+        with closing(open_dbus_connection()) as bus:
+            try:
+                (result,) = Proxy(interface, bus).is_inhibited()
+                return result
+            except DBusErrorResponse:
+                pass
 
     global _disposers
     return bool(_disposers)
