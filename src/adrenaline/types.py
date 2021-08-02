@@ -18,5 +18,11 @@ class Adrenaline(Protocol):
     def is_sleep_prevented(self) -> bool:
         pass
 
-    def prevent_sleep(self, *, display: bool, reason: str) -> AdrenalineContext:
+    def prevent_sleep(
+        self,
+        *,
+        display: bool = False,
+        app_name: Optional[str] = None,
+        reason: Optional[str] = None
+    ) -> AdrenalineContext:
         pass
