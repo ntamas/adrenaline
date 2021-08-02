@@ -16,7 +16,7 @@ from adrenaline import prevent_sleep
 
 with prevent_sleep():
     # do something important here
-	...
+    ...
 ```
 
 Optionally, you can also prevent the screen from turning off:
@@ -24,7 +24,7 @@ Optionally, you can also prevent the screen from turning off:
 ```python
 with prevent_sleep(display=True):
     # do something important here
-	...
+    ...
 ```
 
 Command line interface
