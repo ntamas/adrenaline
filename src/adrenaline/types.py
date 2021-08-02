@@ -1,4 +1,4 @@
-from typing import ContextManager
+from typing import ContextManager, Optional
 
 try:
     from typing import Protocol
