@@ -75,7 +75,10 @@ def _enter(*, display: bool, app_name: str, reason: str) -> None:
     global _connection, _disposers, _interfaces, _interface_candidates
 
     if _connection is None:
-        _connection = open_dbus_connection()
+        try:
+            _connection = open_dbus_connection()
+        except Exception:
+            raise NotSupportedError("Cannot establish connection to D-Bus") from None
 
     success = False
     try:
