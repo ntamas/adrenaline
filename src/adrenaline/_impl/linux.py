@@ -1,7 +1,7 @@
 __all__ = ("_enter", "_exit", "_verify")
 
 from contextlib import closing
-from typing import Any, Callable
+from typing import Any, Callable, List
 
 from jeepney import DBusAddress, DBusErrorResponse, MessageGenerator, new_method_call
 from jeepney.io.blocking import Proxy, open_dbus_connection
@@ -65,7 +65,7 @@ class GNOMESessionManager(MessageGenerator):
 
 
 _connection = None
-_disposers = []  # type: Callable[[Any], None]
+_disposers: List[Callable[[Any], None]] = []
 _interfaces = []
 
 _interface_candidates = [GNOMESessionManager, FreedesktopPowerManagement]
