@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "adrenaline"
-version = "0.2.2"
+version = "0.3.0"
 description = "Keep your OS from sleeping (supports Windows and macOS)"
 authors = ["Tamas Nepusz <ntamas@gmail.com>"]
 license = "MIT"
