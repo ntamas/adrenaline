@@ -6,6 +6,7 @@
 import atexit
 from contextlib import contextmanager
 from ctypes import POINTER, byref, c_int, c_uint32, c_void_p, cdll
+from ctypes.util import find_library
 from typing import Dict
 
 from CoreFoundation import (  # type: ignore
@@ -20,7 +21,7 @@ __all__ = ("_enter", "_exit", "_verify")
 
 
 # Load the IOKit library
-libIOKit = cdll.LoadLibrary("/System/Library/Frameworks/IOKit.framework/IOKit")
+libIOKit = cdll.LoadLibrary(find_library("IOKit"))
 
 # Define argument types for the IOKit functions we are going to use
 libIOKit.IOPMAssertionCreateWithName.argtypes = [
