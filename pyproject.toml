@@ -15,6 +15,7 @@ packages = [
 python = "^3.7"
 pyobjc-core = {platform = "darwin", version = "^9.0.1"}
 pyobjc-framework-Cocoa = {platform = "darwin", version = "^9.0.1"}
+setuptools = {platform = "darwin", version = "^67"}
 jeepney = {platform = "linux", version = "^0.8.0"}
 
 [tool.poetry.dev-dependencies]
