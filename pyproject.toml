@@ -13,16 +13,16 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pyobjc-core = {platform = "darwin", version = "^8.0"}
-pyobjc-framework-Cocoa = {platform = "darwin", version = "^8.0"}
-jeepney = {platform = "linux", version = "^0.6.0"}
+pyobjc-core = {platform = "darwin", version = "^9.0.1"}
+pyobjc-framework-Cocoa = {platform = "darwin", version = "^9.0.1"}
+jeepney = {platform = "linux", version = "^0.8.0"}
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.3"
-coverage = {extras = ["toml"], version = "^5.2"}
-pytest-cov = "^2.11.1"
-tox = "^3.23.0"
-typing-extensions = {version = "^3.7", python = "<3.8"}
+pytest = "^7.2.1"
+coverage = {extras = ["toml"], version = "^7.1.0"}
+pytest-cov = "^4.0.0"
+tox = "^4.4.3"
+typing-extensions = {version = "^4.4.0", python = "<3.8"}
 
 [tool.poetry.scripts]
 adrenaline = "adrenaline.__main__:main"
