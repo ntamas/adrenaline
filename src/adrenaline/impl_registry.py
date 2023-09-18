@@ -1,8 +1,8 @@
 import platform
 from contextlib import contextmanager
-from typing import Dict, Iterator, Optional
+from typing import Iterator, Optional
 
-from .types import Adrenaline, AdrenalineContext
+from .types import Adrenaline
 
 __all__ = ("get_implementation",)
 

@@ -3,7 +3,7 @@ __all__ = ("_enter", "_exit", "_verify")
 from contextlib import closing
 from typing import Any, Callable, List
 
-from jeepney import DBusAddress, DBusErrorResponse, MessageGenerator, new_method_call
+from jeepney import DBusErrorResponse, MessageGenerator, new_method_call
 from jeepney.io.blocking import Proxy, open_dbus_connection
 
 from ..errors import NotSupportedError

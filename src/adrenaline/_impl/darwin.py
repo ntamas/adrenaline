@@ -3,19 +3,14 @@
 # Based on the work of Michael Lynn
 # https://github.com/pudquick/pypmset/blob/master/pypmset.py
 
-import atexit
-from contextlib import contextmanager
-from ctypes import POINTER, byref, c_int, c_uint32, c_void_p, cdll
+from ctypes import POINTER, byref, c_uint32, c_void_p, cdll
 from ctypes.util import find_library
-from typing import Dict
 
 from CoreFoundation import (  # type: ignore
-    CFDictionaryGetValue,
-    CFRelease,
     CFStringCreateWithCString,
     kCFStringEncodingASCII,
 )
-from objc import objc_object, pyobjc_id  # type: ignore
+from objc import pyobjc_id  # type: ignore
 
 __all__ = ("_enter", "_exit", "_verify")
 

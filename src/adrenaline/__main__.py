@@ -30,9 +30,6 @@ def main():
 
     options = parser.parse_args()
 
-    decoration = ""
-    indentation = ""
-
     with adrenaline(display=options.display):
         message = "Sleep mode inhibited."
         if options.display:

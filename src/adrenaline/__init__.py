@@ -1,6 +1,3 @@
-import platform
-from contextlib import contextmanager
-
 from .errors import NotSupportedError
 from .impl_registry import get_implementation
 
