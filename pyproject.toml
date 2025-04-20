@@ -12,7 +12,7 @@ dependencies = [
     "jeepney>=0.8.0; sys_platform == 'linux'",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     "pytest>=8.0.0",
     "coverage[toml]>=7.1.0",
