@@ -4,7 +4,7 @@ requires-python = ">=3.9"
 
 [[package]]
 name = "adrenaline"
-version = "4.0.0"
+version = "4.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "jeepney", marker = "sys_platform == 'linux'" },
