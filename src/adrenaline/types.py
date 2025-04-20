@@ -23,6 +23,6 @@ class Adrenaline(Protocol):
         *,
         display: bool = False,
         app_name: Optional[str] = None,
-        reason: Optional[str] = None
+        reason: Optional[str] = None,
     ) -> AdrenalineContext:
         pass
