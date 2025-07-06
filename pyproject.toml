@@ -7,17 +7,17 @@ license = "MIT"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "pyobjc-core>=11.0; sys_platform == 'darwin'",
-    "pyobjc-framework-Cocoa>=11.0; sys_platform == 'darwin'",
-    "jeepney>=0.8.0; sys_platform == 'linux'",
+  "pyobjc-core>=11.0; sys_platform == 'darwin'",
+  "pyobjc-framework-Cocoa>=11.0; sys_platform == 'darwin'",
+  "jeepney>=0.8.0; sys_platform == 'linux'",
 ]
 
 [dependency-groups]
 dev = [
-    "pytest>=8.0.0",
-    "coverage[toml]>=7.1.0",
-    "pytest-cov>=6.1.1",
-    "tox>=4.4.3",
+  "pytest>=8.0.0",
+  "coverage[toml]>=7.1.0",
+  "pytest-cov>=6.1.1",
+  "tox>=4.4.3",
 ]
 
 [project.scripts]
@@ -26,12 +26,6 @@ adrenaline = "adrenaline.__main__:main"
 [project.urls]
 Homepage = "https://github.com/ntamas/adrenaline"
 Repository = "https://github.com/ntamas/adrenaline"
-
-[tool.hatch.build.targets.sdist]
-include = ["src"]
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/adrenaline"]
 
 [tool.isort]
 multi_line_output = 3
@@ -56,5 +50,5 @@ lint.ignore = ["B905", "C901", "E402", "E501"]
 lint.select = ["B", "C", "E", "F", "W"]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.7.19,<0.8"]
+build-backend = "uv_build"
